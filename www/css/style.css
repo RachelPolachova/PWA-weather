@@ -1,0 +1,51 @@
+/* general */
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+/* clearfix */
+.group:before, .container:before,
+.group:after, .container:after {
+	content: " ";
+	display: table;
+}
+
+.group:after, .container:after {
+	clear: both;
+}
+
+
+body {
+	color: #222;
+	font-size: 100%;
+}
+
+img {
+	width: 100%;
+	max-width: 100%;
+	vertical-align: middle;
+}
+
+a {
+	text-decoration: none;
+}
+
+.container {
+	max-width: 1120px;
+	margin: 0 auto;
+}
+
+.menu {
+	text-align: center;
+	list-style: none;
+	padding-left: 0;
+	margin: 0;
+}
+
+.menu li {
+	display: inline-block;
+}

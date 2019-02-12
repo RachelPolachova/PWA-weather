@@ -21,6 +21,12 @@ class Home extends React.Component {
 		console.log(value)
 	};
 
+	/*
+		Home.js
+		handleClick is called after clicking on button "get weather"
+		this.props.getCurrentCity calls method declared in App.js -> parameter is from Home.js state
+	*/
+
 	handleClick = (e) => {
 		e.preventDefault;
 		this.props.showCurrentCity(true)
@@ -93,6 +99,7 @@ class Home extends React.Component {
 							/>
 						</div>
 						<div className="item">
+							{/* Home.js button get weather */}
 							<button onClick={this.handleClick}>Search</button>
 						</div>
 					</div>

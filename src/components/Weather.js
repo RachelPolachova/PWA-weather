@@ -6,16 +6,14 @@ class Weather extends React.Component {
 	state = {
 		temperatures: [],
 		dates: [],
-		city: this.props.city,
+		city: this.props.city, // city value from parsed data from App.js
 		hasData: false,
 		isFavourite: false
 	};
 
 	getWeather = async () => {
-		// console.log("get Weather called!");
 		const API_KEY = "321e4787765c65bde09141efd2385274";
-		const city = this.state.city;
-		// console.log("city in weather: " + city);
+		const city = this.state.city; // city value from Weather.js state
 		const api_call = await fetch('https://api.openweathermap.org/data/2.5/forecast?q='+city+'&appid='+API_KEY+'&units=metric');
 		const data = await api_call.json()
 

@@ -18,6 +18,10 @@ class App extends React.Component {
 		})
 	});
 
+	/*
+		App.js
+		setting state of App.js as method's parameter city
+	*/
 	getCurrentCity = (city => {
 		this.setState({
 			city:city
@@ -46,11 +50,14 @@ class App extends React.Component {
 						<div>
 							<Navigation showCurrentCity={this.showCurrentCity}/>
 							<h1>weather!</h1>
+							{/* Passing city from App.js state to weather component */}
 							<Weather city={this.state.city} addToFavourite={this.addToFavourite}/>
 						</div>
 					) : (
 						<div>
 							<h1>home</h1>
+							{/* Passing methods getCurrentCity and showCurrent city (declared in App.js)
+							to Home component */}
 							<Home showCurrentCity={this.showCurrentCity} getCurrentCity={this.getCurrentCity} favouriteCities={this.favouriteCities}/>
 						</div>
 					) }

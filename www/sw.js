@@ -22,7 +22,7 @@ if (workbox) {
             cacheName: 'weatherApi',
             plugins: [
                 new workbox.expiration.Plugin({                    
-                    maxAgeSeconds: 5 * 60, // 5 minutes
+                    maxAgeSeconds: 1 * 60, // 5 minutes
                 }),
                 new workbox.cacheableResponse.Plugin({
                     statuses: [0, 200],

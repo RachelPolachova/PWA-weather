@@ -1,51 +1,54 @@
-/* general */
-html {
-	box-sizing: border-box;
+* {
+	font-family: 'Roboto', sans-serif;
+	background-color: #A2BAB6;
+	color: #233B45;
 }
 
-*, *:before, *:after {
-	box-sizing: inherit;
-}
-
-/* clearfix */
-.group:before, .container:before,
-.group:after, .container:after {
-	content: " ";
-	display: table;
-}
-
-.group:after, .container:after {
-	clear: both;
-}
-
-
-body {
-	color: #222;
-	font-size: 100%;
-}
-
-img {
-	width: 100%;
-	max-width: 100%;
-	vertical-align: middle;
-}
-
-a {
-	text-decoration: none;
+h1,h2,h3,h4,h5 {
+	color: #233136;
 }
 
 .container {
-	max-width: 1120px;
-	margin: 0 auto;
+	display: flex;
 }
 
-.menu {
-	text-align: center;
-	list-style: none;
-	padding-left: 0;
-	margin: 0;
+.item {
+	flex-grow: 1;
 }
 
-.menu li {
-	display: inline-block;
+.navigation {
+	margin: 0px;
+	margin-bottom: 15px;
+	padding: 15px;
 }
+
+.navigation, .navigation > a {
+	background-color: #303030;
+	height: 35px;
+	color: #A2BAB6;
+}
+
+a, a:active, a:visited {
+	text-decoration-style: -moz-none;
+	color: #A2BAB6;
+}
+
+.get-weather-btn {
+	background-color: #233136;
+	color: #233B45;
+	padding: 10px;
+}
+
+button {
+	border-style: none;
+	background-color: #A2BAB6;
+	font-size: 20px;
+}
+/* 
+.navbar i, .weather i {
+	font-size: 20px;
+}
+
+.navbar button, .weather button {
+	background-color: #A2BAB6;
+} */

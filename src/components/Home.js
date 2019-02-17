@@ -21,12 +21,6 @@ class Home extends React.Component {
 		console.log(value)
 	};
 
-	/*
-		Home.js
-		handleClick is called after clicking on button "get weather"
-		this.props.getCurrentCity calls method declared in App.js -> parameter is from Home.js state
-	*/
-
 	handleClick = (e) => {
 		e.preventDefault;
 		this.props.showCurrentCity(true)
@@ -45,10 +39,7 @@ class Home extends React.Component {
 	}
 
 	apiCall = async (city) => {
-		console.log("get Weather called!");
 		const API_KEY = "321e4787765c65bde09141efd2385274";
-		// const city = this.state.city;
-		console.log("city in weather: " + city);
 		const api_call = await fetch('https://api.openweathermap.org/data/2.5/forecast?q='+city+'&appid='+API_KEY+'&units=metric');
 		const apidata = await api_call.json()
 		var newArr = this.state.temps
@@ -57,6 +48,12 @@ class Home extends React.Component {
 			temps: newArr
 		})
 	}
+
+	onClick(index) {
+		console.log("Clicked on: " + this.state.favouriteCities[index]);
+		this.props.showCurrentCity(true)
+		this.props.getCurrentCity(this.state.favouriteCities[index])
+    }
 
 	componentDidMount() {
 		// console.log( this.state.favouriteCities );
@@ -72,22 +69,12 @@ class Home extends React.Component {
 				return <p>{temp}</p>
 			})
 
-		} else {
-			console.log("empy temps.")
-		}
-
-		let favCities;
-
-		if (this.state.favouriteCities) {
-			favCities = this.state.favouriteCities.map(city => {
-				return <p>{city}</p>
-			})
 		}
 
 		return(
 			<MuiThemeProvider>
 				<div>
-					<h3>Insert city</h3>
+					<h4>Find your city.</h4>
 					<div className="container">
 						<div className="item">
 							<AutoComplete
@@ -99,13 +86,16 @@ class Home extends React.Component {
 							/>
 						</div>
 						<div className="item">
-							{/* Home.js button get weather */}
-							<button onClick={this.handleClick}>Search</button>
+							<button onClick={this.handleClick}><i class="fas fa-search"></i></button>
 						</div>
 					</div>
 					<div className="container">
 						<div className="item">
-							{favCities}
+							{this.state.favouriteCities.map((city, index) =>
+								<div key={index} onClick={() => this.onClick(index)}>
+									<p>{city}</p> 
+								</div>
+							)}
 						</div>
 						<div className="item">
 							{temps}

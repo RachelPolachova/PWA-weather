@@ -6,14 +6,16 @@ class Weather extends React.Component {
 	state = {
 		temperatures: [],
 		dates: [],
-		city: this.props.city, // city value from parsed data from App.js
+		city: this.props.city,
+		favouriteCities: this.props.favouriteCities,
 		hasData: false,
-		isFavourite: false
 	};
 
 	getWeather = async () => {
+		// console.log("get Weather called!");
 		const API_KEY = "321e4787765c65bde09141efd2385274";
-		const city = this.state.city; // city value from Weather.js state
+		const city = this.state.city;
+		// console.log("city in weather: " + city);
 		const api_call = await fetch('https://api.openweathermap.org/data/2.5/forecast?q='+city+'&appid='+API_KEY+'&units=metric');
 		const data = await api_call.json()
 
@@ -52,17 +54,23 @@ class Weather extends React.Component {
 	};
 
 	makeFavourite = (e) => {
-		if (this.state.isFavourite) {
+
+		let isFav = this.isFavourite  
+
+		if (this.state.favouriteCities.indexOf(this.state.city) > -1) {
+			console.log("Is already favourite! ")
+			let newArray = this.state.favouriteCities.filter(city => city !== this.state.city)
 			this.setState({
-				isFavourite: false
+				favouriteCities: newArray
 			})
-		} else {
+			this.props.removeFromFavourite(this.state.city)
+		}  else {
+			console.log("is not favourite!")
 			this.setState({
-				isFavourite: true
+				favouriteCities: this.props.favouriteCities
 			})
+			this.props.addToFavourite(this.state.city)
 		}
-		this.props.addToFavourite(this.state.city)
-		console.log( "State set to: " + this.state.isFavourite );
 	}
 
 
@@ -84,20 +92,49 @@ class Weather extends React.Component {
 			})
 		}
 
+		let favCities = this.state.favouriteCities
+		let city = this.state.city
+		let makeFavourite = this.makeFavourite
+
+		function MakeFavouriteButton() {
+			return <button onClick={makeFavourite}><i class="far fa-heart"></i></button>;
+		  }
+		  
+		  function DeleteFavouriteButton() {
+			return <button onClick={makeFavourite}><i class="fas fa-heart"></i></button>;
+		  }
+
+		function IsFavouriteButton() {
+			if (favCities.indexOf(city) > -1) {
+				console.log("return deletefav")
+				return <DeleteFavouriteButton />;	
+			}
+			console.log("return makefav")
+			return <MakeFavouriteButton />;
+		  }
+
 
 		return (
 				<div className="weather">
-					<h3>Weather.</h3>
-					<h4>
-						{ this.state.city ? (
-						<div>
-							<p>City: {this.state.city}</p>
-							<button onClick={this.makeFavourite}>Make favourite.</button>
+					<div className="container">
+						<div className="item">
+							{ this.state.city ? (
+								<div>
+									<div className="container">
+										<div className="item">
+											<h3>{this.state.city}</h3>
+										</div>
+										<div className="item">
+											<IsFavouriteButton/>
+										</div>
+									</div>
+								</div>
+							) : (
+								<h3>Please, insert city.</h3>
+							)}
 						</div>
-					) : (
-						<p>Please, insert city.</p>
-					)}
-					</h4>
+					</div>
+					
 						{ this.state.hasData === true ? (
 							<div className="container">
 								<div className="item">

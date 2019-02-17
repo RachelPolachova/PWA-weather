@@ -2,6 +2,7 @@ import React from 'react';
 import Weather from './components/Weather';
 import Navigation from './components/Navigation';
 import Home from "./components/Home";
+// import ls from 'local-storage';
 
 class App extends React.Component {
 
@@ -18,10 +19,6 @@ class App extends React.Component {
 		})
 	});
 
-	/*
-		App.js
-		setting state of App.js as method's parameter city
-	*/
 	getCurrentCity = (city => {
 		this.setState({
 			city:city
@@ -29,10 +26,20 @@ class App extends React.Component {
 	})
 
 	addToFavourite = (favouriteCity => {
+		// console.log("addToFavorite in app.js called!")
 		this.favouriteCities.push(favouriteCity)
-		console.log( "fav cities:" + this.favouriteCities );
+		// console.log( "fav cities:" + this.favouriteCities );
+		// localStorage.removeItem('test')
 		// localStorage.setItem('test', JSON.stringify(this.favouriteCities))
-		console.log( "Get item: " + JSON.parse(localStorage.getItem('test')) );
+		// console.log( "Get item: " + JSON.parse(localStorage.getItem('test')) );
+	})
+
+	removeFromFavourite = (favouriteCity => {
+		console.log("Deleting " + favouriteCity + " from favourites.")
+		let newArray = this.favouriteCities.filter(city => city !== favouriteCity)
+		this.favouriteCities = newArray
+		// localStorage.removeItem('test')
+		// localStorage.setItem('test',JSON.stringify(this.favouriteCities))
 	})
 
 	componentDidMount() {
@@ -49,15 +56,11 @@ class App extends React.Component {
 					{ this.state.viewCurrentCity ? (
 						<div>
 							<Navigation showCurrentCity={this.showCurrentCity}/>
-							<h1>weather!</h1>
-							{/* Passing city from App.js state to weather component */}
-							<Weather city={this.state.city} addToFavourite={this.addToFavourite}/>
+							<Weather city={this.state.city} addToFavourite={this.addToFavourite} removeFromFavourite={this.removeFromFavourite} favouriteCities={this.favouriteCities}/>
 						</div>
 					) : (
 						<div>
-							<h1>home</h1>
-							{/* Passing methods getCurrentCity and showCurrent city (declared in App.js)
-							to Home component */}
+							<h3>Home.</h3>
 							<Home showCurrentCity={this.showCurrentCity} getCurrentCity={this.getCurrentCity} favouriteCities={this.favouriteCities}/>
 						</div>
 					) }

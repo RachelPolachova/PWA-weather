@@ -3,7 +3,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
 	// entry: ['@babel/polyfill', './src/main.js'],
-	entry: ['@babel/polyfill', './src/main.js'],
+	entry: ['@babel/polyfill', '../src/main.js'],
 	output: {
 		path: path.resolve(__dirname, 'www/js'),
 		filename: 'bundle.js',

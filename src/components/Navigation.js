@@ -9,7 +9,7 @@ const Navigation = (props) => {
 
 	return(
 		<div className="navbar">
-			<button onClick={handleClick}><i class="fas fa-chevron-left"></i></button>
+			<button onClick={handleClick}><i class="fas fa-chevron-left">Back</i></button>
 		</div>
 	);
 }

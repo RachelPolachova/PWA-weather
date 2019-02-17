@@ -86,7 +86,7 @@ class Home extends React.Component {
 							/>
 						</div>
 						<div className="item">
-							<button onClick={this.handleClick}><i class="fas fa-search"></i></button>
+							<button onClick={this.handleClick}><i class="fas fa-search">Search</i></button>
 						</div>
 					</div>
 					<div className="container">

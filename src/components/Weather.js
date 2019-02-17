@@ -97,11 +97,11 @@ class Weather extends React.Component {
 		let makeFavourite = this.makeFavourite
 
 		function MakeFavouriteButton() {
-			return <button onClick={makeFavourite}><i class="far fa-heart"></i></button>;
+			return <button onClick={makeFavourite}><i class="far fa-heart">Favourite</i></button>;
 		  }
 		  
 		  function DeleteFavouriteButton() {
-			return <button onClick={makeFavourite}><i class="fas fa-heart"></i></button>;
+			return <button onClick={makeFavourite}><i class="fas fa-heart">Unfavourite</i></button>;
 		  }
 
 		function IsFavouriteButton() {

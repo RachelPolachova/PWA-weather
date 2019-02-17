@@ -91,10 +91,13 @@ class Home extends React.Component {
 					</div>
 					<div className="container">
 						<div className="item">
-							{this.state.favouriteCities.map((city, index) =>
+						{ this.state.favouriteCities ? (
+								this.state.favouriteCities.map((city, index) =>
 								<div key={index} onClick={() => this.onClick(index)}>
 									<p>{city}</p> 
-								</div>
+								</div>)
+							) : (
+								<h3>No fav cities</h3>
 							)}
 						</div>
 						<div className="item">

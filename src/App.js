@@ -26,25 +26,32 @@ class App extends React.Component {
 	})
 
 	addToFavourite = (favouriteCity => {
-		// console.log("addToFavorite in app.js called!")
+		console.log("addToFavorite in app.js called!")
 		this.favouriteCities.push(favouriteCity)
-		// console.log( "fav cities:" + this.favouriteCities );
-		// localStorage.removeItem('test')
-		// localStorage.setItem('test', JSON.stringify(this.favouriteCities))
-		// console.log( "Get item: " + JSON.parse(localStorage.getItem('test')) );
+		console.log( "fav cities:" + this.favouriteCities );
+		localStorage.removeItem('test')
+		localStorage.setItem('test', JSON.stringify(this.favouriteCities))
+		console.log( "Get item: " + JSON.parse(localStorage.getItem('test')) );
 	})
 
 	removeFromFavourite = (favouriteCity => {
 		console.log("Deleting " + favouriteCity + " from favourites.")
 		let newArray = this.favouriteCities.filter(city => city !== favouriteCity)
 		this.favouriteCities = newArray
-		// localStorage.removeItem('test')
-		// localStorage.setItem('test',JSON.stringify(this.favouriteCities))
+		localStorage.removeItem('test')
+		localStorage.setItem('test',JSON.stringify(this.favouriteCities))
 	})
 
 	componentDidMount() {
-		// console.log( JSON.parse(localStorage.getItem('test')) );
-		// this.favouriteCities = JSON.parse(localStorage.getItem('test'));
+		console.log("if null, then []")
+		console.log( JSON.parse(localStorage.getItem('test')) );
+		let favCities = JSON.parse(localStorage.getItem('test'));
+		if (favCities == null || favCities == undefined) {
+			console.log('were null || undefined')
+			this.favouriteCities = []
+		} else {
+			this.favouriteCities = favCities
+		}
 		this.setState({
 			viewCurrentCity: false
 		})
